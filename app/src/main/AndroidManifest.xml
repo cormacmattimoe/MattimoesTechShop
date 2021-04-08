@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MattimoesTechShop">
+        <activity android:name=".UserRegister"></activity>
+        <activity android:name=".UserLogin" />
+        <activity android:name=".CustomerBasket" />
+        <activity android:name=".AddItemToCart"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

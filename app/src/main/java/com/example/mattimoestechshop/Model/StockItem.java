@@ -7,19 +7,19 @@ public class StockItem {
     private String productManufacturer;
     private String productPrice;
     private String productQuantity;
-    private String productionCategory;
+    private String productDescription;
     private String productImage;
 
     public StockItem() {
     }
 
-    public StockItem(String productName, String productCategory, String productManufacturer, String productPrice, String productQuantity, String productionCategory, String productImage) {
+    public StockItem(String productName, String productCategory, String productManufacturer, String productPrice, String productQuantity, String productDescription, String productImage) {
         this.productName = productName;
         this.productCategory = productCategory;
         this.productManufacturer = productManufacturer;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
-        this.productionCategory = productionCategory;
+        this.productDescription = productDescription;
         this.productImage = productImage;
     }
 
@@ -63,12 +63,12 @@ public class StockItem {
         this.productQuantity = productQuantity;
     }
 
-    public String getProductionCategory() {
-        return productionCategory;
+    public String getProductDescription() {
+        return getProductDescription();
     }
 
-    public void setProductionCategory(String productionCategory) {
-        this.productionCategory = productionCategory;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     public String getProductImage() {

@@ -8,7 +8,7 @@ android:background="@drawable/bluebk">
 
 
     <EditText
-        android:id="@+id/etProductName"
+        android:id="@+id/productNameEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product Name"
@@ -24,7 +24,7 @@ android:background="@drawable/bluebk">
         app:layout_constraintVertical_bias="0.204" />
 
     <EditText
-        android:id="@+id/etManufacturer"
+        android:id="@+id/productManEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Manufacturer"
@@ -38,7 +38,7 @@ android:background="@drawable/bluebk">
         app:layout_constraintVertical_bias="0.273" />
 
     <EditText
-        android:id="@+id/etCategory"
+        android:id="@+id/productCatEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Category"
@@ -54,7 +54,7 @@ android:background="@drawable/bluebk">
         app:layout_constraintVertical_bias="0.427" />
 
     <EditText
-        android:id="@+id/etPrice"
+        android:id="@+id/productPriceEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Price"
@@ -70,7 +70,7 @@ android:background="@drawable/bluebk">
         app:layout_constraintVertical_bias="0.518" />
 
     <EditText
-        android:id="@+id/etQuantity"
+        android:id="@+id/productQuantityEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Quantity"
@@ -86,7 +86,7 @@ android:background="@drawable/bluebk">
         app:layout_constraintVertical_bias="0.587" />
 
     <EditText
-        android:id="@+id/etDescription"
+        android:id="@+id/productDescEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"

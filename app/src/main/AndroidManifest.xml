@@ -9,10 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MattimoesTechShop">
-        <activity android:name=".UserRegister"></activity>
-        <activity android:name=".UserLogin" />
-        <activity android:name=".CustomerBasket" />
-        <activity android:name=".AddItemToCart"/>
+        <activity android:name=".Customer.CustomerCheckout"></activity>
+        <activity android:name=".Admin.AdminViewCustomerDetails" />
+        <activity android:name=".Customer.CustomerCreateAccount" />
+        <activity android:name=".Customer.CustomerProductDetails" />
+        <activity android:name=".ProductCatalogue" />
+
+        <activity android:name=".Customer.CustomerProductViewPage" />
+        <activity android:name=".Customer.CustomerHomePage" />
+        <activity android:name=".Admin.AdminHome" />
+        <activity android:name=".Authetication.UserRegister" />
+        <activity android:name=".Authetication.UserLogin" />
+        <activity android:name=".Customer.CustomerShoppingCart" />
+        <activity android:name=".Admin.AdminAddItemToDatabase" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

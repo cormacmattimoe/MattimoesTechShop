@@ -2,50 +2,60 @@ package com.example.mattimoestechshop.Model;
 
 public class Order {
 
-    private String ProductName;
-    private String productPrice;
-    private String productQuantity;
-    private String productImage;
-
+    private String orderNumber;
+    private String orderName;
+    private String orderQuantity;
+    private String orderPrice;
+    private String orderStatus;  //basket, purchased, fulfilled//
+    //payment method
     public Order() {
     }
 
-    public Order(String productName, String productPrice, String productQuantity, String productImage) {
-        ProductName = productName;
-        this.productPrice = productPrice;
-        this.productQuantity = productQuantity;
-        this.productImage = productImage;
+    public Order(String orderNumber, String orderName, String orderQuantity, String orderPrice, String orderStatus) {
+        this.orderNumber = orderNumber;
+        this.orderName = orderName;
+        this.orderQuantity = orderQuantity;
+        this.orderPrice = orderPrice;
+        this.orderStatus = orderStatus;
     }
 
-    public String getProductName() {
-        return ProductName;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setProductName(String productName) {
-        ProductName = productName;
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
-    public String getProductPrice() {
-        return productPrice;
+    public String getOrderName() {
+        return orderName;
     }
 
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
     }
 
-    public String getProductQuantity() {
-        return productQuantity;
+    public String getOrderQuantity() {
+        return orderQuantity;
     }
 
-    public void setProductQuantity(String productQuantity) {
-        this.productQuantity = productQuantity;
+    public void setOrderQuantity(String orderQuantity) {
+        this.orderQuantity = orderQuantity;
     }
 
-    public String getProductImage() {
-        return productImage;
+    public String getOrderPrice() {
+        return orderPrice;
     }
 
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
+    public void setOrderPrice(String orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

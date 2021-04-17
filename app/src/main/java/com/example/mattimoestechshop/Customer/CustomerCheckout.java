@@ -2,6 +2,7 @@ package com.example.mattimoestechshop.Customer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,7 @@ import com.example.mattimoestechshop.StrategyPattern.PaymentMethodStrategy;
 public class CustomerCheckout extends AppCompatActivity {
 
     Button buyProductBtn;
-    int amount;
+    int amount = 1000;
     int am;
     EditText totalAmount;
     PaymentMethodStrategy paymentMethodStrategy;
@@ -31,6 +32,8 @@ public class CustomerCheckout extends AppCompatActivity {
         totalAmount = findViewById(R.id.amountTxt);
 
 
+
+
         buyProductBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,12 +42,15 @@ public class CustomerCheckout extends AppCompatActivity {
                 if (amount > 500) {
                     paymentMethodStrategy = new PaybyPayPal();
                     paymentMethodStrategy.payForProduct(amount);
+                    startActivity(new Intent(getApplicationContext(), CustomerCheckoutPayPal.class));
                 } else if (amount < 500 && amount > 100) {
                     paymentMethodStrategy = new PayByCreditCard();
                     paymentMethodStrategy.payForProduct(amount);
+                    startActivity(new Intent(getApplicationContext(), CustomerCheckoutCreditCard.class));
                 } else {
                     paymentMethodStrategy = new PayByCash();
                     paymentMethodStrategy.payForProduct(amount);
+                    startActivity(new Intent(getApplicationContext(), CustomerCheckoutCash.class));
                 }
                 Toast.makeText(CustomerCheckout.this, "Successfully paid", Toast.LENGTH_SHORT).show();
             }

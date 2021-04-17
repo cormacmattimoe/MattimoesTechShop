@@ -123,9 +123,10 @@ public class UserRegister extends AppCompatActivity {
 
                 Customer customerDetails = new Customer.CustomerDetailsBuilder()
                         .addCustomerName(name)// required parameters
-                        .addCustomerAddress(address) // optional
-                        .addCustomerPhoneNumber(number) // optional
-                        .addCustomerEmail(custemail).build(); // to get back customer information
+                        .addCustomerAddress(address) // required parameters
+                        .addCustomerPhoneNumber(number) // required parameters
+                        .addCustomerEmail(custemail) //required parameters
+                        .build(); // Build CustomerDetails
                 db.collection("customers").document()
                         .set(customerDetails);
             }

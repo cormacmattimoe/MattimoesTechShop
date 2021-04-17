@@ -135,20 +135,24 @@ public class CustomerProductDetails extends AppCompatActivity {
                     cart = currentCustomer.getCustomerShoppingCart();
                     cart.addProductItem(tempStock);
                     String quantityString = totalQuantity.getText().toString();
-                    int quantityInput = Integer.parseInt(quantityString);
-                    quanAfterAdd = tempQuantity - quantityInput;
+                    if (quantityString.isEmpty()) {
+                        Toast.makeText(CustomerProductDetails.this, "Please enter amount", Toast.LENGTH_SHORT).show();
+                    } else {
+                        int quantityInput = Integer.parseInt(quantityString);
+                        quanAfterAdd = tempQuantity - quantityInput;
 
-                    db.collection("products").whereEqualTo("Product", name).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful())
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    productId = document.getId();
-                                    db.collection("products").document(productId).update("Quantity", quanAfterAdd);
-
-                                }
-                        }
-                    });
+                        db.collection("products").whereEqualTo("Product", name).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful())
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        productId = document.getId();
+                                        db.collection("products").document(productId).update("Quantity", quanAfterAdd);
+                                        startActivity(new Intent(getApplicationContext(), CustomerCheckout.class));
+                                    }
+                            }
+                        });
+                    }
                 }
 
 

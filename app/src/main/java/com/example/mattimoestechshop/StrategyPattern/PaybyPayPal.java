@@ -26,5 +26,6 @@ public class PaybyPayPal implements PaymentMethodStrategy{
     public void payForProduct(int amount) {
         System.out.println(amount + " paid using PayPal.");
     }
+
 }
 

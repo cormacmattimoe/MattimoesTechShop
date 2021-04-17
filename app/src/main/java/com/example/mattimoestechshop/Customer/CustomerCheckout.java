@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.mattimoestechshop.Authetication.UserLogin;
 import com.example.mattimoestechshop.R;
 import com.example.mattimoestechshop.StrategyPattern.PayByCash;
 import com.example.mattimoestechshop.StrategyPattern.PayByCreditCard;
@@ -44,6 +46,7 @@ public class CustomerCheckout extends AppCompatActivity {
                     paymentMethodStrategy = new PayByCash();
                     paymentMethodStrategy.payForProduct(amount);
                 }
+                Toast.makeText(CustomerCheckout.this, "Successfully paid", Toast.LENGTH_SHORT).show();
             }
         });
     }

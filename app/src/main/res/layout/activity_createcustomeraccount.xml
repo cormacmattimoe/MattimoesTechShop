@@ -4,14 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D63E33">
-
+    android:background="#FFFFFF"
+    android:backgroundTint="#24A336"
+    tools:context=".Customer.CustomerCreateAccount">
 
     <EditText
-        android:id="@+id/productNameEd"
+        android:id="@+id/custEmailEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Product Name"
+        android:hint="Customer Email Address"
+        android:inputType="textMultiLine|textCapSentences"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="345dp"
+        android:layout_height="51dp"
+        android:text="Create Customer Account"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.067" />
+
+    <EditText
+        android:id="@+id/custNameEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Customer Name"
         android:inputType="text"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -24,72 +54,10 @@
         app:layout_constraintVertical_bias="0.204" />
 
     <EditText
-        android:id="@+id/productManEd"
+        android:id="@+id/custNumberEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Manufacturer"
-        android:inputType="text"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.273" />
-
-    <EditText
-        android:id="@+id/productCatEd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Category"
-        android:inputType="text"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
-
-    <EditText
-        android:id="@+id/productPriceEd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Price"
-        android:inputType="numberDecimal"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
-
-    <EditText
-        android:id="@+id/productQuantityEd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quantity"
-        android:inputType="number"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587" />
-
-    <EditText
-        android:id="@+id/productDescEd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description"
+        android:hint="Customer Phone Number"
         android:inputType="textMultiLine|textCapSentences"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -100,28 +68,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.344" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="345dp"
-        android:layout_height="51dp"
-        android:text="Enter Product Details"
+    <EditText
+        android:id="@+id/custAddressEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Customer Address"
+        android:inputType="text"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.273" />
 
     <Button
-        android:id="@+id/addBtn"
-        android:layout_width="277dp"
-        android:layout_height="76dp"
-        android:background="#9F5B5B"
-        android:text="Add Product"
+        android:id="@+id/createAccBtn"
+        android:layout_width="298dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="164dp"
+        android:background="@android:color/white"
+        android:text="Create Account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.723" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

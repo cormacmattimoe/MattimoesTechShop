@@ -1,4 +1,4 @@
-package com.example.mattimoestechshop;
+package com.example.mattimoestechshop.Authetication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mattimoestechshop.BuilderPatternCustomer.Customer;
 import com.example.mattimoestechshop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +27,7 @@ import java.util.Map;
 
 public class UserRegister extends AppCompatActivity {
     private static final String TAG = "Welcome";
-    EditText mName, mEmail, mPassword, mPhoneNumber;
+    EditText mName, mEmail, mPassword,mAddress,mPhone;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -44,6 +45,8 @@ public class UserRegister extends AppCompatActivity {
         mName = findViewById(R.id.Name);
         mEmail = findViewById(R.id.Email);
         mPassword = findViewById(R.id.password);
+        mAddress = findViewById(R.id.addressEd);
+        mPhone = findViewById(R.id.phoneNumberEd);
         mRegisterBtn = findViewById(R.id.signupButton);
         mLoginBtn = findViewById(R.id.alreadytv);
 
@@ -54,7 +57,7 @@ public class UserRegister extends AppCompatActivity {
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = mEmail.getText().toString().trim();
+                String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 final String fullName = mName.getText().toString();
                 if (TextUtils.isEmpty(fullName)) {
@@ -85,6 +88,7 @@ public class UserRegister extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             db.collection("users").document(fullName);
+
                             Toast.makeText(UserRegister.this, "You have been registered", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), UserLogin.class));
                         } else {
@@ -105,13 +109,26 @@ public class UserRegister extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(UserRegister.this, "New user created", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(UserRegister.this, "New Customer created", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(UserRegister.this, "User already exists", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
-            };
+
+                String name = mName.getText().toString();
+                String address = mAddress.getText().toString();
+                String number = mPhone.getText().toString();
+                String custemail = mEmail.getText().toString();
+
+                Customer customerDetails = new Customer.CustomerDetailsBuilder()
+                        .addCustomerName(name)// required parameters
+                        .addCustomerAddress(address) // optional
+                        .addCustomerPhoneNumber(number) // optional
+                        .addCustomerEmail(custemail).build(); // to get back customer information
+                db.collection("customers").document()
+                        .set(customerDetails);
+            }
         });
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {

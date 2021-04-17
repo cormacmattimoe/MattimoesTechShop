@@ -1,28 +1,27 @@
 package com.example.mattimoestechshop.Model;
 
-public class RatingSystem {
+public class CustomerReviews {
 
-    private String username;
+    private String customerUsername;
     private String productId;
     private String rateValue;
     private String comment;
+    private String orderNumber;
 
-    public RatingSystem() {
-    }
-
-    public RatingSystem(String username, String productId, String rateValue, String comment) {
-        this.username = username;
+    public CustomerReviews(String customerUsername, String productId, String rateValue, String comment, String orderNumber) {
+        this.customerUsername = customerUsername;
         this.productId = productId;
         this.rateValue = rateValue;
         this.comment = comment;
+        this.orderNumber = orderNumber;
     }
 
-    public String getUsername() {
-        return username;
+    public String getCustomerUsername() {
+        return customerUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCustomerUsername(String customerUsername) {
+        this.customerUsername = customerUsername;
     }
 
     public String getProductId() {
@@ -47,5 +46,13 @@ public class RatingSystem {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }

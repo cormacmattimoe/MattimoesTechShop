@@ -1,6 +1,5 @@
-package com.example.mattimoestechshop;
+package com.example.mattimoestechshop.Admin;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,30 +9,27 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mattimoestechshop.Model.StockItem;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.mattimoestechshop.Model.ProductItem;
+import com.example.mattimoestechshop.R;
+import com.example.mattimoestechshop.StatePattern.ProductState;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
-public class AddItemToCart extends AppCompatActivity {
+public class AdminAddItemToDatabase extends AppCompatActivity {
 
 
     EditText productName, productManufacturer, productCategory, productPrice, productQuantity, productDescription;
     ImageView imageView;
     Button btnAddImage, btnAddProduct;
+    int numberOfStock;
 
     //Firebase
     FirebaseDatabase database;
@@ -41,9 +37,11 @@ public class AddItemToCart extends AppCompatActivity {
     StorageReference storageReference;
     FirebaseStorage storage;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ProductItem productItem;
+    ProductState productState;
 
     Uri saveUri;
-    StockItem newItem;
+    ProductItem newItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,41 +51,56 @@ public class AddItemToCart extends AppCompatActivity {
         //Firebase Init
         database = FirebaseDatabase.getInstance();
 
-        productName = findViewById(R.id.etProductName);
-        productManufacturer = findViewById(R.id.etManufacturer);
-        productCategory = findViewById(R.id.etCategory);
-        productPrice = findViewById(R.id.etPrice);
-        productQuantity = findViewById(R.id.etQuantity);
-        productDescription = findViewById(R.id.etDescription);
+        productName = findViewById(R.id.productNameEd);
+        productManufacturer = findViewById(R.id.productManEd);
+        productCategory = findViewById(R.id.productCatEd);
+        productPrice = findViewById(R.id.productPriceEd);
+        productQuantity = findViewById(R.id.productQuantityEd);
+        productDescription = findViewById(R.id.productDescEd);
         btnAddProduct = findViewById(R.id.addBtn);
 
 
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { {
-                    addItem();
-                Toast.makeText(AddItemToCart.this, "Product added successfully ", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(),AddItemToCart.class));
+            public void onClick(View v) {
+                {
+                    getProductInformationFromScreen();
+                    Toast.makeText(AdminAddItemToDatabase.this, "Product added successfully ", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), AdminAddItemToDatabase.class));
                 }
             }
         });
     }
 
 
-    public void addItem() {
+    public void getProductInformationFromScreen() {
         String pn = productName.getText().toString();
         String manu = productManufacturer.getText().toString();
         String cat = productCategory.getText().toString();
+        String quantityString = productQuantity.getText().toString();
+        int quantityAdded = Integer.parseInt(quantityString);
         String desc = productDescription.getText().toString();
         String price = productPrice.getText().toString();
+        productItem = new ProductItem();
+        productItem.setProductName(pn);
+        productItem.setProductManufacturer(manu);
+        productItem.setProductCategory(cat);
+        productItem.setProductStockOnhand(quantityAdded);
+        productItem.setProductDescription(desc);
+        productItem.setProductPrice(price);
+        productItem.resupplyProduct(quantityAdded);
         Map<String, Object> newItem = new HashMap<>();
         newItem.put("Product", pn);
         newItem.put("Manufacturer", manu);
         newItem.put("Category", cat);
         newItem.put("Description", desc);
         newItem.put("Price", price);
-        db.collection("products").document()
-                .set(newItem);
+        newItem.put("Quantity", quantityAdded);
+        AdminAddProductToDatabase ad  = new AdminAddProductToDatabase();
+        ad.addProduct(newItem);
+        System.out.println("This is the product state after write to db " + productItem.getProductState());
+
+
     }
 
 }

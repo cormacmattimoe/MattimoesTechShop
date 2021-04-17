@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -50,56 +51,68 @@
             android:layout_marginLeft="10dp">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/nameEd"
-                android:textStyle="bold"
-                android:textAllCaps="true"
-                android:textColor="#000"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp" />
-
-            <TextView
-                android:layout_width="match_parent"
+                android:layout_width="123dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvCustAddress"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
                 android:textAllCaps="true"
                 android:textColor="#000"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:layout_marginTop="5dp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvProductState2"
-                android:layout_width="match_parent"
+                android:id="@+id/tvProductState"
+                android:layout_width="125dp"
                 android:layout_height="43dp"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
+                android:background="#FF0B0B"
                 android:text="Not Available "
                 android:textColor="#FFFFFF"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                tools:visibility="invisible" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tvCustAddress"
+                android:layout_width="123dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/productManutxt"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
                 android:textAllCaps="true"
                 android:textColor="#000"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp" />
+                android:textSize="18sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/productCattxt"
-                android:textStyle="bold"
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
                 android:textAllCaps="true"
                 android:textColor="#000"
-                android:layout_weight="1"
                 android:textSize="20sp"
-                android:layout_marginTop="15dp" />
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/quanTvProd"
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
 

@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MattimoesTechShop">
-        <activity android:name=".Customer.CustomerCheckout"></activity>
+        <activity android:name=".Customer.CustomerCheckoutCash"></activity>
+        <activity android:name=".Customer.CustomerCheckoutCreditCard" />
+        <activity android:name=".Customer.CustomerCheckoutPayPal" />
+        <activity android:name=".Customer.CustomerCheckout" />
         <activity android:name=".Admin.AdminViewCustomerDetails" />
+        <activity android:name=".Admin.AdminProductViewPage" />
         <activity android:name=".Customer.CustomerCreateAccount" />
         <activity android:name=".Customer.CustomerProductDetails" />
         <activity android:name=".ProductCatalogue" />
-
         <activity android:name=".Customer.CustomerProductViewPage" />
         <activity android:name=".Customer.CustomerHomePage" />
         <activity android:name=".Admin.AdminHome" />

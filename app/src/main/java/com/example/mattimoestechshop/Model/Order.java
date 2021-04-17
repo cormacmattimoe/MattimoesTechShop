@@ -1,22 +1,29 @@
 package com.example.mattimoestechshop.Model;
 
+import java.util.ArrayList;
+
 public class Order {
 
     private String orderNumber;
     private String orderName;
     private String orderQuantity;
     private String orderPrice;
-    private String orderStatus;  //basket, purchased, fulfilled//
+    private String orderStatus;
+    private ArrayList<ProductItem> productItems;
+
+
+    //basket, purchased, fulfilled//
     //payment method
     public Order() {
     }
 
-    public Order(String orderNumber, String orderName, String orderQuantity, String orderPrice, String orderStatus) {
+    public Order(String orderNumber, String orderName, String orderQuantity, String orderPrice, String orderStatus, ArrayList<ProductItem> productItems) {
         this.orderNumber = orderNumber;
         this.orderName = orderName;
         this.orderQuantity = orderQuantity;
         this.orderPrice = orderPrice;
         this.orderStatus = orderStatus;
+        this.productItems = productItems;
     }
 
     public String getOrderNumber() {
@@ -57,5 +64,17 @@ public class Order {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public ArrayList<ProductItem> getProductItems() {
+        return productItems;
+    }
+
+    public void setProductItems(ArrayList<ProductItem> productItems) {
+        this.productItems = productItems;
+    }
+
+    public void addProductItem(ProductItem productItem){
+        this.productItems.add(productItem);
     }
 }

@@ -10,7 +10,7 @@ public class CustomerObserver implements Observer {
 
 
     public void buyMac() {
-        System.out.println("Got new mac");
+        System.out.println("The Mac is now in stock");
     }
 
     public void unsubscribe() {

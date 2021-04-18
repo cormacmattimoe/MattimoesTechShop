@@ -22,7 +22,6 @@ public class Mac implements Observable {
     public void addObserver(com.example.mattimoestechshop.ObserverPattern.Observer o) {
         customers.add(o);
     }
-
     @Override
     public void removeObserver(com.example.mattimoestechshop.ObserverPattern.Observer o) {
         customers.remove(o);

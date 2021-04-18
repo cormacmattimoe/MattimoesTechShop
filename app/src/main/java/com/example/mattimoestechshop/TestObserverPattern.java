@@ -1,60 +1,30 @@
-/*
+
 
 package com.example.mattimoestechshop;
 
 import com.example.mattimoestechshop.ObserverPattern.CustomerObserver;
+import com.example.mattimoestechshop.ObserverPattern.Mac;
+import com.example.mattimoestechshop.ObserverPattern.Observable;
+import com.example.mattimoestechshop.ObserverPattern.Observer;
 
 public class TestObserverPattern {
 
 
         public static void main(String args[]) {
+            Observable pObvervable = new Mac();
 
-            PublicFigure bobama = new PublicFigure("Barack Obama", "bobama");
-            PublicFigure nmodi = new PublicFigure("Narendra Modi", "nmodi");
+            Observer observer1 = new CustomerObserver(pObvervable);
+            Observer observer2 = new CustomerObserver(pObvervable);
+            Observer observer3 = new CustomerObserver(pObvervable);
 
-            CustomerObserver customerObserver = new CustomerObserver("Ajay");
+            pObvervable.addObserver(observer1);
+            pObvervable.addObserver(observer2);
+            pObvervable.addObserver(observer3);
 
-            Follower vijay = new Follower("Vijay");
-
-            Follower racheal = new Follower("Racheal");
-
-            Follower micheal = new Follower("Micheal");
-
-            Follower kim = new Follower("Kim");
-
-            bobama.addSubscriber(ajay);
-
-            bobama.addSubscriber(vijay);
-
-            bobama.addSubscriber(racheal);
-            18
-            bobama.addSubscriber(micheal);
-            19
-            bobama.addSubscriber(kim);
-            20
-            21
-            nmodi.addSubscriber(ajay);
-            22
-            nmodi.addSubscriber(vijay);
-            23
-            nmodi.addSubscriber(racheal);
-            24
-            nmodi.addSubscriber(micheal);
-            25
-            nmodi.addSubscriber(kim);
-            26
-            27
-            bobama.tweet("Hello Friends!");
-            28
-            nmodi.tweet("Vande Matram!");
-            29
-            bobama.removeSubscriber(racheal);
-            30
-            bobama.tweet("Stay Home! Stay Safe!");
-            31
+            pObvervable.notifyObserver();
         }
-32
-    }
-}
 
- */
+
+
+
+}

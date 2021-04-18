@@ -2,24 +2,20 @@ package com.example.mattimoestechshop.Adapters;
 
 
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mattimoestechshop.Admin.AdminUpdateProductItem;
-import com.example.mattimoestechshop.Customer.CustomerProductDetails;
 import com.example.mattimoestechshop.Model.ProductItem;
 import com.example.mattimoestechshop.R;
 
 import java.util.ArrayList;
 
-public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapter.MyViewHolder> {
+public class AdminProductDetailsAdapter extends RecyclerView.Adapter<AdminProductDetailsAdapter.MyViewHolder> {
     ArrayList<ProductItem> viewingAllProducts;
     public static final String MESSAGE_KEY1 = "text";
     public static final String MESSAGE_KEY2 = "position";
@@ -31,7 +27,7 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
     // Provide a reference to the views for each data item
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView tvProductName, tvProductPrice, tvProductManufacturer, tvProductState, tvProductQuantity, tvProductCategory, tvProductDescription;
+        public TextView tvProductName, tvProductPrice, tvProductManufacturer, tvProductState , tvProductQuantity,tvProductCategory, tvProductDescription;
 
 
         public MyViewHolder(View itemView) {
@@ -41,6 +37,7 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
             tvProductManufacturer = (TextView) itemView.findViewById(R.id.productManutxt);
             tvProductState = itemView.findViewById(R.id.tvProductState2);
             tvProductQuantity = itemView.findViewById(R.id.tvProductQuantity738);
+
 
 
         }
@@ -61,15 +58,15 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
 
 
     // Provide the dataset to the Adapter
-    public AdminProductAdapter(ArrayList<ProductItem> myDataset) {
+    public AdminProductDetailsAdapter(ArrayList<ProductItem> myDataset) {
         viewingAllProducts = myDataset;
 
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public AdminProductAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                               int viewType) {
+    public AdminProductDetailsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                      int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.adminproductforsale, parent, false);
@@ -92,28 +89,32 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
         holder.tvProductManufacturer.setText(productManu);
         holder.tvProductQuantity.setText(String.valueOf(productQuan));
 
+     /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Item clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(view.getContext(), AdminUpdateProductItem.class);
+                Intent intent = new Intent(view.getContext(), CustomerProductDetails.class);
 
                 intent.putExtra("Name", productName);
                 intent.putExtra("Price", productPrice);
                 intent.putExtra("Manufacturer", productManu);
 
-                view.getContext().startActivity(intent);
-
-
+                view.getContext().startActivity(intent); //start activity from another activity, here we are in MyAdapter class,
+                // need to call start from the activity within that viewholder
             }
         });
+
+      */
+
+
     }
-
-
     // Return the size of your dataset
     @Override
     public int getItemCount() {
         return viewingAllProducts.size();
     }
+
 
 }

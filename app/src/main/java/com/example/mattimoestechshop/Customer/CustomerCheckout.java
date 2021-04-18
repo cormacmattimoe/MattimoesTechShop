@@ -19,7 +19,7 @@ import com.example.mattimoestechshop.StrategyPattern.PaymentMethodStrategy;
 public class CustomerCheckout extends AppCompatActivity {
 
     Button buyProductBtn;
-    int amount = 1000;
+    int amount;
     int am;
     EditText totalAmount;
     PaymentMethodStrategy paymentMethodStrategy;

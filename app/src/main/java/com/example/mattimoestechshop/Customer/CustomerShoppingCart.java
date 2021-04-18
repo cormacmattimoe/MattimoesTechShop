@@ -76,6 +76,8 @@ public class CustomerShoppingCart extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
+
+
         checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,13 +92,13 @@ public class CustomerShoppingCart extends AppCompatActivity {
                 } else if (amount < 500 && amount > 100) {
                     paymentMethodStrategy = new PayByCreditCard();
                     paymentMethodStrategy.payForProduct(amount);
-                    Intent i = new Intent(CustomerShoppingCart.this, CustomerCheckout.class);
+                    Intent i = new Intent(CustomerShoppingCart.this, CustomerCheckoutCreditCard.class);
                     startActivity(i);
                     finish();
                 } else {
                     paymentMethodStrategy = new PayByCash();
                     paymentMethodStrategy.payForProduct(amount);
-                    Intent i = new Intent(CustomerShoppingCart.this, CustomerCheckout.class);
+                    Intent i = new Intent(CustomerShoppingCart.this, PayByCash.class);
                     startActivity(i);
                     finish();
                 }

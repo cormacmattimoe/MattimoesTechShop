@@ -1,5 +1,6 @@
 package com.example.mattimoestechshop.Model;
 
+
 import com.example.mattimoestechshop.StatePattern.InStock;
 import com.example.mattimoestechshop.StatePattern.OutOfStock;
 import com.example.mattimoestechshop.StatePattern.ProductState;
@@ -15,6 +16,7 @@ public class ProductItem {
     ProductState inStock;
     ProductState outOfStock;
     ProductState productState;
+
 
     public ProductItem() {
         inStock = new InStock(this);

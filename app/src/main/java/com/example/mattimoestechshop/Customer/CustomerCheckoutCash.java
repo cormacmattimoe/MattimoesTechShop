@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mattimoestechshop.BuilderPatternCustomer.Customer;
+import com.example.mattimoestechshop.Model.Order;
 import com.example.mattimoestechshop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +28,7 @@ public class CustomerCheckoutCash extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Customer currentCustomer;
     String custId;
+    Order order = new Order();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,8 @@ public class CustomerCheckoutCash extends AppCompatActivity {
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+             //   order = currentCustomer.getOrders();
+             //   order.setProductItems();
                 db.collection("customers").whereEqualTo("customerEmail", emailAdId)
                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -69,8 +73,9 @@ public class CustomerCheckoutCash extends AppCompatActivity {
                         if (task.isSuccessful())
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 custId = document.getId();
+                                db.collection("customers").document(custId).collection("ShoppingCart").document().delete();
                                 db.collection("customers").document(custId)
-                                        .collection("Order").document().set("order");
+                                        .collection("Order").document().set("Order");
                             }
                     }
                 });

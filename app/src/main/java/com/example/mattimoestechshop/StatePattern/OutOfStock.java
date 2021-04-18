@@ -1,3 +1,4 @@
+
 package com.example.mattimoestechshop.StatePattern;
 
 
@@ -33,5 +34,6 @@ public class OutOfStock implements ProductState{
         productItem.setProductState(productItem.getProductAvailable());
     }
 }
+
 
 

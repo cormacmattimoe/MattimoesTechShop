@@ -10,6 +10,9 @@ public class TestBuilderPatternCustomer {
                 .addCustomerAddress("Dublin") // optional
                 .addCustomerPhoneNumber("08606984984") // optional
                 .addCustomerEmail("cmay@gmail.com").build(); // to get back customer information
-        System.out.println(customerDetails);
+        System.out.println("Customer Name : " + customerDetails.getCustomerName() + "\n"
+                + "Customer Address : " + customerDetails.getCustomerAddress() + "\n"
+                + "Customer PhoneNumber : " + customerDetails.getCustomerPhoneNumber() +
+                "\n" + "Customer Email : " + customerDetails.getCustomerEmail());
     }
-}
+    }

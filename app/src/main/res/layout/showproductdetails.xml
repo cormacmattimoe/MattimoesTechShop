@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.573" />
 
     <Button
-        android:id="@+id/btnAddToCart"
+        android:id="@+id/btnUpdateQuan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/totalQuanTvt"
+        android:id="@+id/updateQuanEd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

@@ -2,6 +2,8 @@ package com.example.mattimoestechshop.Customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import com.example.mattimoestechshop.Adapters.CustomerCartAdapter;
 import com.example.mattimoestechshop.Adapters.ProductDetailsAdapter;
 import com.example.mattimoestechshop.Admin.AdminAddItemToDatabase;
 import com.example.mattimoestechshop.Admin.AdminHome;
+import com.example.mattimoestechshop.Authetication.UserLogin;
 import com.example.mattimoestechshop.BuilderPatternCustomer.Customer;
 import com.example.mattimoestechshop.Model.ProductItem;
 import com.example.mattimoestechshop.Model.ShoppingCart;
@@ -200,6 +203,34 @@ public class CustomerShoppingCart extends AppCompatActivity {
                     }
                 });
         return shoppingCart;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.item1:
+                Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(CustomerShoppingCart.this, CustomerProductViewPage.class);
+                startActivity(i);
+                return true;
+            case R.id.item2:
+                Toast.makeText(getApplicationContext(), "Log out", Toast.LENGTH_LONG).show();
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent u = new Intent(CustomerShoppingCart.this, UserLogin.class);
+                startActivity(u);
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 

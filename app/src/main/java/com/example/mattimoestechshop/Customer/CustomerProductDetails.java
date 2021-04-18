@@ -8,13 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mattimoestechshop.Adapters.ProductDetailsAdapter;
+import com.example.mattimoestechshop.Admin.AdminAddProductToDatabase;
 import com.example.mattimoestechshop.Authetication.UserLogin;
 import com.example.mattimoestechshop.BuilderPatternCustomer.Customer;
 import com.example.mattimoestechshop.Model.ProductItem;
@@ -29,17 +33,18 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerProductDetails extends AppCompatActivity {
 
     ProductDetailsAdapter pAdapter;
     TextView productState;
-    RecyclerView rcvAllItems;
+    RecyclerView rcvItem;
     ArrayList<ProductItem> shoppingItem = new ArrayList<>();
     ArrayList<ProductItem> addProductsToCart = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button addToCartBtn;
-    ProductItem productItem;
     int productQuantity;
     ProductItem tempStock;
     String name;
@@ -53,32 +58,34 @@ public class CustomerProductDetails extends AppCompatActivity {
     String productId;
     int tempQuantity;
     int quanAfterAdd;
+    int quantityInput;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.showproductdetails);
-        rcvAllItems = findViewById(R.id.rcvProducts);
-        addToCartBtn = findViewById(R.id.btnAddToCart);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        rcvItem = findViewById(R.id.rcvProducts);
+        addToCartBtn = findViewById(R.id.btnUpdateQuan);
         productState = findViewById(R.id.productStateDet);
-        totalQuantity = findViewById(R.id.totalQuanTvt);
+        totalQuantity = findViewById(R.id.updateQuanEd);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         name = intent.getStringExtra("Name");
 
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        rcvAllItems.setLayoutManager(mLayoutManager);
+        rcvItem.setLayoutManager(mLayoutManager);
 
         pAdapter = new ProductDetailsAdapter(shoppingItem);
         //Add the divider line
         pAdapter.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        rcvAllItems.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        rcvAllItems.setHasFixedSize(true);
+        rcvItem.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        rcvItem.setHasFixedSize(true);
 
 
-        rcvAllItems.setAdapter(pAdapter);
+        rcvItem.setAdapter(pAdapter);
 
         db.collection("customers")
                 .whereEqualTo("customerEmail", emailAdId)
@@ -105,21 +112,6 @@ public class CustomerProductDetails extends AppCompatActivity {
                     }
                 });
         retrieveProductName();
-
-
-
-
-
-     /*   if (prod == "") {
-            state = noStock.stockLevelsState();
-            Toast.makeText(ProductDetails.this, "Stock needs to be updated", Toast.LENGTH_LONG).show();
-        }
-        else {
-            state = hasStock.stockLevelsState();
-        }
-
-      */
-
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,28 +130,23 @@ public class CustomerProductDetails extends AppCompatActivity {
                     if (quantityString.isEmpty()) {
                         Toast.makeText(CustomerProductDetails.this, "Please enter amount", Toast.LENGTH_SHORT).show();
                     } else {
-                        int quantityInput = Integer.parseInt(quantityString);
+                        quantityInput = Integer.parseInt(quantityString);
                         quanAfterAdd = tempQuantity - quantityInput;
+                        tempStock.setProductStockOnhand(quanAfterAdd);
 
-                        db.collection("products").whereEqualTo("Product", name).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        db.collection("products").whereEqualTo("Product", name).get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful())
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         productId = document.getId();
                                         db.collection("products").document(productId).update("Quantity", quanAfterAdd);
-                                        startActivity(new Intent(getApplicationContext(), CustomerCheckout.class));
                                     }
                             }
                         });
                     }
                 }
-
-
-                /*
-                //current customer get from intent
-                // ShoppingCart cart = currentcustomer.getShoppingCart()
-                // cart.addProductItem()
                 System.out.println("This is your cart  as customer" + currentCustomer.toString());
                 System.out.println("This is your cart as carting" + cart.toString());
                 db.collection("customers").whereEqualTo("customerEmail", emailAdId)
@@ -169,15 +156,24 @@ public class CustomerProductDetails extends AppCompatActivity {
                         if (task.isSuccessful())
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 custId = document.getId();
+                                Map<String, Object> newCartItem = new HashMap<>();
+                                newCartItem.put("Product", tempStock.getProductName());
+                                newCartItem.put("Manufacturer", tempStock.getProductManufacturer());
+                                newCartItem.put("Category", tempStock.getProductCategory());
+                                newCartItem.put("Description", tempStock.getProductDescription());
+                                newCartItem.put("Price", tempStock.getProductPrice());
+                                newCartItem.put("Quantity", quantityInput);
                                 db.collection("customers").document(custId)
-                                        .collection("ShoppingCart").document().set(cart);
-                //                db.collection("customers").document(custId).update("customerShoppingCart", cart);
-                                startActivity(new Intent(getApplicationContext(), CustomerShoppingCart.class));
+                                        .collection("ShoppingCart").add(newCartItem);
+                //               db.collection("customers").document(custId).update("customerShoppingCart", cart);;
+
+                                Intent i = new Intent(CustomerProductDetails.this, CustomerShoppingCart.class);
+                                i.putExtra("CustomerId",custId);
+                                startActivity(i);
                             }
                     }
                 });
 
-                 */
             }
         });
     }
@@ -191,7 +187,7 @@ public class CustomerProductDetails extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String tempProductName = document.getString("Product");
-                                String tempProductPrice = document.getString("Price");
+                                int tempProductPrice = document.getLong("Price").intValue();
                                 String tempProductManufacturer = document.getString("Manufacturer");
                                 tempQuantity = document.getLong("Quantity").intValue();
 
@@ -213,5 +209,33 @@ public class CustomerProductDetails extends AppCompatActivity {
                     }
                 });
         return shoppingItem;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.item1:
+                Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(CustomerProductDetails.this, CustomerProductViewPage.class);
+                startActivity(i);
+                return true;
+            case R.id.item2:
+                Toast.makeText(getApplicationContext(), "Log out", Toast.LENGTH_LONG).show();
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent u = new Intent(CustomerProductDetails.this, UserLogin.class);
+                startActivity(u);
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

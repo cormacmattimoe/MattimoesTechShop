@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.example.mattimoestechshop.Adapters.CustomerAdapter;
 import com.example.mattimoestechshop.BuilderPatternCustomer.Customer;
@@ -29,6 +30,7 @@ public class AdminViewCustomerDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_customer_details);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         rcvCustomers = findViewById(R.id.rcvCustomers);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rcvCustomers.setLayoutManager(mLayoutManager);

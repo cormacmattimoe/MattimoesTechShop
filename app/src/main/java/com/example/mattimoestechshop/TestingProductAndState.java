@@ -15,7 +15,7 @@ public class TestingProductAndState {
         String cat = "Phone";
         int quantityAdded = 20;
         String desc = "this is a long description";
-        String price = "300";
+        int price = 300;
         productItem = new ProductItem();
         productItem.setProductName(pn);
         productItem.setProductManufacturer(manu);

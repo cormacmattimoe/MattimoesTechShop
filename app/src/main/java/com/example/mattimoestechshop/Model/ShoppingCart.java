@@ -7,28 +7,30 @@ import com.example.mattimoestechshop.StatePattern.ProductState;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart {
+public class ShoppingCart extends ProductItem {
 
-    private String totalOfGoods;
+    private int totalOfGoods;
     private ArrayList<ProductItem> productItems = new ArrayList<ProductItem>();
     ProductItem productItem;
+    int numberOfItems;
 
 
     public ShoppingCart(){
 
     }
 
-    public ShoppingCart(String totalOfGoods, ArrayList<ProductItem> productItems) {
+    public ShoppingCart(int totalOfGoods, ArrayList<ProductItem> productItems, ProductItem productItem, int numberOfItems) {
         this.totalOfGoods = totalOfGoods;
         this.productItems = productItems;
+        this.productItem = productItem;
+        this.numberOfItems = numberOfItems;
     }
 
-
-    public String getTotalOfGoods() {
+    public int getTotalOfGoods() {
         return totalOfGoods;
     }
 
-    public void setTotalOfGoods(String totalOfGoods) {
+    public void setTotalOfGoods(int totalOfGoods) {
         this.totalOfGoods = totalOfGoods;
     }
 
@@ -40,7 +42,31 @@ public class ShoppingCart {
         this.productItems = productItems;
     }
 
+    public ProductItem getProductItem() {
+        return productItem;
+    }
+
+    public void setProductItem(ProductItem productItem) {
+        this.productItem = productItem;
+    }
+
+    public int getNumberOfItems() {
+        return numberOfItems;
+    }
+
+    public void setNumberOfItems(int numberOfItems) {
+        this.numberOfItems = numberOfItems;
+    }
+
     public void addProductItem(ProductItem productItem) {
+        totalOfGoods = totalOfGoods + (productItem.getProductStockOnhand() * productItem.getProductPrice());
+        numberOfItems = numberOfItems + 1;
         this.productItems.add(productItem);
+    }
+
+    public void removeProductItem(ProductItem productItem) {
+        totalOfGoods = totalOfGoods - (productItem.getProductStockOnhand() * productItem.getProductPrice());
+        numberOfItems = numberOfItems - 1;
+        this.productItems.remove(productItem);
     }
 }

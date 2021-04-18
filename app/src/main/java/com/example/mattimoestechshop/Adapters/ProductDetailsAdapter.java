@@ -89,12 +89,12 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         final String productName = viewingAllProducts.get(position).getProductName();
-        final String productPrice = viewingAllProducts.get(position).getProductPrice();
+        final int productPrice = viewingAllProducts.get(position).getProductPrice();
         final String productManu = viewingAllProducts.get(position).getProductManufacturer();
         final int productQuan = viewingAllProducts.get(position).getProductStockOnhand();
 
         holder.tvProductName.setText(productName);
-        holder.tvProductPrice.setText(productPrice);
+        holder.tvProductPrice.setText(String.valueOf(productPrice));
         holder.tvProductManufacturer.setText(productManu);
         holder.tvProductQuantity.setText(String.valueOf(productQuan));
 

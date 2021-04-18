@@ -2,6 +2,7 @@ package com.example.mattimoestechshop.Admin;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,7 +42,8 @@ public class AdminProductViewPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userhomepage);
+        setContentView(R.layout.activity_adminhomepage);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         rcvAllItems = findViewById(R.id.rcvProducts);
         searchProductNameBtn = findViewById(R.id.searchProNameBtn);
         searchProductManuBtn = findViewById(R.id.searchManuBtn);
@@ -91,7 +93,7 @@ public class AdminProductViewPage extends AppCompatActivity {
                             ProductItem tempStock = null;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String tempProductName = document.getString("Product");
-                                String tempProductPrice = document.getString("Price");
+                                int tempProductPrice = document.getLong("Price").intValue();
                                 String tempProductManufacturer = document.getString("Manufacturer");
                                 int tempQuantity = document.getLong("Quantity").intValue();
 
@@ -127,8 +129,7 @@ public class AdminProductViewPage extends AppCompatActivity {
                             ProductItem tempStock = null;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String tempProductName = document.getString("Product");
-                                String tempProductPrice = document.getString("Price");
-                                String tempProductManufacturer = document.getString("Manufacturer");
+                                int tempProductPrice = document.getLong("Price").intValue();                                String tempProductManufacturer = document.getString("Manufacturer");
                                 int tempQuantity = document.getLong("Quantity").intValue();
 
                                 tempStock = new ProductItem();
@@ -163,7 +164,7 @@ public class AdminProductViewPage extends AppCompatActivity {
                             ProductItem tempStock = null;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String tempProductName = document.getString("Product");
-                                String tempProductPrice = document.getString("Price");
+                                int tempProductPrice = document.getLong("Price").intValue();
                                 String tempProductManufacturer = document.getString("Manufacturer");
                                 int tempQuantity = document.getLong("Quantity").intValue();
 

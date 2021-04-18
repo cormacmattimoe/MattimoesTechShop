@@ -54,6 +54,7 @@ public class CustomerProductViewPage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userhomepage);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         rcvAllItems = findViewById(R.id.rcvProducts);
         searchProductNameBtn = findViewById(R.id.searchProNameBtn);
         searchManuBtn = findViewById(R.id.searchManuBtn);
@@ -97,8 +98,7 @@ public class CustomerProductViewPage extends AppCompatActivity{
                            }
                        }
                    });
-
-                                searchProductNameBtn.setOnClickListener(new View.OnClickListener() {
+                searchProductNameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String productName = searchEd.getText().toString();
@@ -110,7 +110,9 @@ public class CustomerProductViewPage extends AppCompatActivity{
         searchManuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String productManu = searchManuEd.getText().toString();
+
                 // retrieveProductName(productName);
                 retrieveProductManufacturer(productManu);
 
@@ -129,7 +131,7 @@ public class CustomerProductViewPage extends AppCompatActivity{
                             ProductItem tempStock = null;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String tempProductName = document.getString("Product");
-                                String tempProductPrice = document.getString("Price");
+                                int tempProductPrice = document.getLong("Price").intValue();
                                 String tempProductManufacturer = document.getString("Manufacturer");
                                 int tempQuantity = document.getLong("Quantity").intValue();
 
@@ -157,6 +159,7 @@ public class CustomerProductViewPage extends AppCompatActivity{
         return viewAllProducts;
     }
     public ArrayList<ProductItem> retrieveProductManufacturer(final String productManufacturer ) {
+        viewAllProducts.clear();
         db.collection("products")
                 .whereEqualTo("Manufacturer", productManufacturer)
                 .get()
@@ -167,7 +170,7 @@ public class CustomerProductViewPage extends AppCompatActivity{
                             ProductItem tempStock = null;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String tempProductName = document.getString("Product");
-                                String tempProductPrice = document.getString("Price");
+                                int tempProductPrice = document.getLong("Price").intValue();
                                 String tempProductManufacturer = document.getString("Manufacturer");
                                 int tempQuantity = document.getLong("Quantity").intValue();
 
@@ -189,6 +192,7 @@ public class CustomerProductViewPage extends AppCompatActivity{
                         } else {
                             System.out.println("Wrong");
                         }
+                        pAdapter.notifyDataSetChanged();
                     }
                 });
         return viewAllProducts;

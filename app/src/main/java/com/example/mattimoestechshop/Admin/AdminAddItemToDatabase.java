@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,6 +48,7 @@ public class AdminAddItemToDatabase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additemtocart);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         //Firebase Init
         database = FirebaseDatabase.getInstance();
@@ -81,20 +83,21 @@ public class AdminAddItemToDatabase extends AppCompatActivity {
         int quantityAdded = Integer.parseInt(quantityString);
         String desc = productDescription.getText().toString();
         String price = productPrice.getText().toString();
+        int priceOfItem = Integer.parseInt(price);
         productItem = new ProductItem();
         productItem.setProductName(pn);
         productItem.setProductManufacturer(manu);
         productItem.setProductCategory(cat);
         productItem.setProductStockOnhand(quantityAdded);
         productItem.setProductDescription(desc);
-        productItem.setProductPrice(price);
+        productItem.setProductPrice(priceOfItem);
         productItem.resupplyProduct(quantityAdded);
         Map<String, Object> newItem = new HashMap<>();
         newItem.put("Product", pn);
         newItem.put("Manufacturer", manu);
         newItem.put("Category", cat);
         newItem.put("Description", desc);
-        newItem.put("Price", price);
+        newItem.put("Price", priceOfItem);
         newItem.put("Quantity", quantityAdded);
         AdminAddProductToDatabase ad  = new AdminAddProductToDatabase();
         ad.addProduct(newItem);

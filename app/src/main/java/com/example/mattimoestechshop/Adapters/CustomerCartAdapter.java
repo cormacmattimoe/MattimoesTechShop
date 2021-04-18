@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mattimoestechshop.Customer.CustomerProductDetails;
 import com.example.mattimoestechshop.Model.ProductItem;
+import com.example.mattimoestechshop.Model.ShoppingCart;
 import com.example.mattimoestechshop.R;
 
 import java.util.ArrayList;
 
 public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapter.MyViewHolder> {
-    ArrayList<ProductItem> viewingAllProducts;
+    ArrayList <ProductItem> cartItems;
     public static final String MESSAGE_KEY1 = "text";
     public static final String MESSAGE_KEY2 = "position";
     String name;
@@ -50,7 +51,7 @@ public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapte
         @Override
         public void onClick(View view) {
             int position = this.getLayoutPosition();
-            String name = viewingAllProducts.get(position).getProductName();
+            String name = cartItems.get(position).getProductName();
             //Intent intent = new Intent(view.getContext(), UpdateActivity.class );
             //intent.putExtra(MESSAGE_KEY1 ,name);
             //intent.putExtra(MESSAGE_KEY2, position);
@@ -64,7 +65,7 @@ public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapte
 
     // Provide the dataset to the Adapter
     public CustomerCartAdapter(ArrayList<ProductItem> myDataset) {
-        viewingAllProducts = myDataset;
+       cartItems = myDataset;
 
     }
 
@@ -83,13 +84,13 @@ public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        final String productName = viewingAllProducts.get(position).getProductName();
-        final String productPrice = viewingAllProducts.get(position).getProductPrice();
-        final String productManu = viewingAllProducts.get(position).getProductManufacturer();
-        final int productQuan = viewingAllProducts.get(position).getProductStockOnhand();
+        final String productName = cartItems.get(position).getProductName();
+        final int productPrice = cartItems.get(position).getProductPrice();
+        final String productManu = cartItems.get(position).getProductManufacturer();
+        final int productQuan = cartItems.get(position).getProductStockOnhand();
 
         holder.tvProductName.setText(productName);
-        holder.tvProductPrice.setText(productPrice);
+        holder.tvProductPrice.setText(String.valueOf(productPrice));
         holder.tvProductManufacturer.setText(productManu);
         holder.tvProductQuantity.setText(String.valueOf(productQuan));
 
@@ -98,7 +99,7 @@ public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapte
     // Return the size of your dataset
     @Override
     public int getItemCount() {
-        return viewingAllProducts.size();
+        return cartItems.size();
     }
 
 

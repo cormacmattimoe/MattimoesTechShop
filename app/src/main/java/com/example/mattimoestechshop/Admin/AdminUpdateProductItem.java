@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ public class AdminUpdateProductItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_update_product_item);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         rcvAllItems = findViewById(R.id.rcvProducts);
         updateAmountBtn = findViewById(R.id.btnUpdateQuan);
         totalQuantity = findViewById(R.id.updateQuanEd);
@@ -129,7 +131,7 @@ public class AdminUpdateProductItem extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String tempProductName = document.getString("Product");
-                                String tempProductPrice = document.getString("Price");
+                                int tempProductPrice = document.getLong("Price").intValue();
                                 String tempProductManufacturer = document.getString("Manufacturer");
                                 tempQuantity = document.getLong("Quantity").intValue();
 

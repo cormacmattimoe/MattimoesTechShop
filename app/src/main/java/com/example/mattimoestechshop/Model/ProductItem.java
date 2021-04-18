@@ -10,7 +10,7 @@ public class ProductItem {
     private String productName;
     private String productCategory;
     private String productManufacturer;
-    private String productPrice;
+    private int productPrice;
     private int productStockOnhand;
     private String productDescription;
     ProductState inStock;
@@ -60,7 +60,7 @@ public class ProductItem {
 
 
 
-    public ProductItem(String productName, String productCategory, String productManufacturer, String productPrice, int productStockOnhand, String productDescription, ProductState productState) {
+    public ProductItem(String productName, String productCategory, String productManufacturer, int productPrice, int productStockOnhand, String productDescription, ProductState productState) {
         this.productName = productName;
         this.productCategory = productCategory;
         this.productManufacturer = productManufacturer;
@@ -95,11 +95,11 @@ public class ProductItem {
         this.productManufacturer = productManufacturer;
     }
 
-    public String getProductPrice() {
+    public int getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
 

@@ -19,6 +19,8 @@ public class Customer implements Serializable{
     private String  userDetails;
     private ShoppingCart customerShoppingCart;
     private ArrayList<Order> orders;
+    private ArrayList <ProductItem> order;
+    private Order orderModel;
 
 
     //Default PaymentMethod
@@ -89,6 +91,22 @@ public class Customer implements Serializable{
 
     public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
+    }
+
+    public ArrayList<ProductItem> getOrder() {
+        return order;
+    }
+
+    public void setOrder(ArrayList<ProductItem> order) {
+        this.order = order;
+    }
+
+    public Order getOrderModel() {
+        return orderModel;
+    }
+
+    public void setOrderModel(Order orderModel) {
+        this.orderModel = orderModel;
     }
 
     public Customer(String customerName, String customerAddress, String customerPhoneNumber, String customerEmail, String userDetails, ShoppingCart customerShoppingCart, ArrayList<Order> orders) {
